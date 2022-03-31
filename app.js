@@ -2,9 +2,10 @@ const app = new Vue({
     el: "#vue-app",
     data: {
         contacts,
-        activeIndex: 0,
+        activeIndex: null,
         inputText: "",
         search: "",
+        show: false
     },
     computed: {
         filterContact() {
@@ -62,6 +63,18 @@ const app = new Vue({
         deleteMsg(i) {
             i.displayBox = !i.displayBox;
             this.contacts[this.activeIndex].messages.splice(i, 1);
+        },
+        ifActive(index) {
+            if (index === this.activeIndex) {
+                return "active";
+            }
+        },
+        showClose() {
+            this.show = !this.show
+        },
+        closeChat() {
+            this.activeIndex = null;
+            this.show = !this.show
         }
     }
 })

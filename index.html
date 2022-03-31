@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <div id="head-banner"></div>
     <div id="vue-app">
         <div class="container">
             <div id="main-left">
@@ -37,7 +38,7 @@
                 </div>
                 <div id="chats">
                     <div v-for="(contact,index) in filterContact" @click="setActive(index)">
-                        <div class="contact">
+                        <div :class="['contact',ifActive(index)]">
                             <div class="contact-image">
                                 <img :src="getSrc(contact)" :alt="contact.name" class="img-icon" />
                             </div>
@@ -49,17 +50,21 @@
                     </div>
                 </div>
             </div>
-            <div id="main-right">
+            <div id="main-left-info">
+
+            </div>
+            <div id="main-right" v-if="activeIndex!==null">
                 <div id="main-header">
                     <div id="active-img">
                         <img :src="getSrc(contacts[activeIndex])" :alt="contacts[activeIndex].name">
                     </div>
                     <div id="active-name">
-                        {{contacts[activeIndex].name}}
+                        <p>{{contacts[activeIndex].name}}</p>
                     </div>
                     <div id="main-head-icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                        <i class="fa-solid fa-ellipsis-vertical" @click="showClose"></i>
+                        <div v-if="show" @click="closeChat" id="closer">Chiudi Chat</div>
                     </div>
                 </div>
                 <div id="main-messages">
@@ -86,6 +91,14 @@
                         <i class="fa-solid fa-location-arrow" @click="sendMsg(contacts[activeIndex].messages)"></i>
                         <i class="fa-solid fa-microphone"></i>
                     </div>
+                </div>
+            </div>
+            <div v-else id="main-no-message">
+                <div id="no-msg-container">
+                    <img src="img/bg-no_message.png" alt="">
+                    <h1>WhatsApp Web</h1>
+                    <p>Ora puoi inviare e ricevere messaggi senza che il telefono sia connesso a Internet. Usa WhatsApp
+                        Web su un massimo di 4 dispositivi e 1 telefono contemporaneamente</p>
                 </div>
             </div>
         </div>
