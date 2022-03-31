@@ -14,7 +14,29 @@
 
 <body>
     <div id="vue-app">
-
+        <div class="container">
+            <div id="main-left">
+                <div id="my-profile">
+                    <img src="img/avatar_io.jpg" alt="Sofia" class="img-icon">
+                    <span>Sofia</span>
+                </div>
+                <div id="chat">
+                    <div v-for="(contact,index) in contacts" @click="setActive(index)">
+                        <img :src="getSrc(contact)" :alt="contact.name" class="img-icon" />
+                        {{contact.name}}
+                        <p>Ultimo messaggio</p>
+                    </div>
+                </div>
+            </div>
+            <div id="main-right">
+                <div v-if="activeIndex !== null">
+                    <p>messaggi da visualizzare</p>
+                </div>
+                <div v-else>
+                    <p>Nessun messaggio da visualizzare</p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

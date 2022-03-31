@@ -3,3 +3,39 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body{
+    background-color: #d9dbd4;
+}
+
+.container{
+    width: 1200px;
+    height: 90vh;
+    margin: 30px auto;
+    background-color: white;
+    display: flex;
+}
+
+#main-left{
+    background-color: aquamarine;
+    border: 1px solid black;
+    width: 35%;
+    height: 100%;
+}
+
+#main-right{
+    background-color: aquamarine;
+    border: 1px solid black;
+    width: 65%;
+    height: 100%;
+}
+
+.img-icon{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+#chat{
+    margin-top: 50px;
+}
