@@ -2,9 +2,9 @@ const app = new Vue({
     el: "#vue-app",
     data: {
         contacts,
-        activeIndex: null,
+        activeIndex: 0,
         inputText: "",
-        search: ""
+        search: "",
     },
     computed: {
         filterContact() {
@@ -33,23 +33,35 @@ const app = new Vue({
             }
         },
         sendMsg(msg) {
-            msg.push({
-                date: new Date().toLocaleString(),
-                message: this.inputText,
-                status: "sent"
-            })
-            setTimeout(function () {
+            let input = this.inputText.trim();
+            if (input.length > 0) {
                 msg.push({
                     date: new Date().toLocaleString(),
-                    message: "ok",
-                    status: "received"
+                    message: input,
+                    status: "sent",
+                    displayBox: false
                 })
-            }, 3000)
+                setTimeout(function () {
+                    msg.push({
+                        date: new Date().toLocaleString(),
+                        message: "Sono solo uno stupido bot! Non posso rispondere",
+                        status: "received",
+                        displayBox: false
+                    })
+                }, 3000)
+            }
             this.inputText = "";
         },
         lastMsg(contact) {
             const i = parseInt(contact.messages.length - 1);
             return contact.messages[i].message;
+        },
+        displayDel(msg) {
+            msg.displayBox = !msg.displayBox;
+        },
+        deleteMsg(i) {
+            i.displayBox = !i.displayBox;
+            this.contacts[this.activeIndex].messages.splice(i, 1);
         }
     }
 })
