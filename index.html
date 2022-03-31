@@ -30,7 +30,19 @@
             </div>
             <div id="main-right">
                 <div v-if="activeIndex !== null">
-                    <p>messaggi da visualizzare</p>
+                    <div id="meain-header">
+                        <img :src="getSrc(contacts[activeIndex])" :alt="contacts[activeIndex].name" class="img-icon">
+                        {{contacts[activeIndex].name}}
+                    </div>
+                    <div id="main-messages">
+                        <div v-for="msg in contacts[activeIndex].messages" :class="status(msg)">
+                            {{msg.message}}
+                            {{msg.date}}
+                        </div>
+                    </div>
+                    <div id="main-footer">
+                        <input type="text" v-model="inputText" @keyUp.enter="sendMsg(contacts[activeIndex].messages)">
+                    </div>
                 </div>
                 <div v-else>
                     <p>Nessun messaggio da visualizzare</p>
