@@ -20,11 +20,12 @@
                     <img src="img/avatar_io.jpg" alt="Sofia" class="img-icon">
                     <span>Sofia</span>
                 </div>
+                <input type="text" v-model="search">
                 <div id="chat">
-                    <div v-for="(contact,index) in contacts" @click="setActive(index)">
+                    <div v-for="(contact,index) in filterContact" @click="setActive(index)">
                         <img :src="getSrc(contact)" :alt="contact.name" class="img-icon" />
                         {{contact.name}}
-                        <p>Ultimo messaggio</p>
+                        <p>{{lastMsg(contact)}}</p>
                     </div>
                 </div>
             </div>

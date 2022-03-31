@@ -3,12 +3,21 @@ const app = new Vue({
     data: {
         contacts,
         activeIndex: null,
-        inputText: ""
+        inputText: "",
+        search: ""
+    },
+    computed: {
+        filterContact() {
+            if (this.search.length > 0) {
+                return this.contacts.filter((element) => {
+                    return element.name.toLowerCase().includes(this.search.toLowerCase());
+                });
+            } else {
+                return this.contacts;
+            }
+        }
     },
     methods: {
-        mounted() {
-            console.log(activeIndex);
-        },
         getSrc(avt) {
             return "img/avatar" + avt.avatar + ".jpg";
         },
@@ -37,6 +46,10 @@ const app = new Vue({
                 })
             }, 3000)
             this.inputText = "";
+        },
+        lastMsg(contact) {
+            const i = parseInt(contact.messages.length - 1);
+            return contact.messages[i].message;
         }
     }
 })
