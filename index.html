@@ -19,7 +19,9 @@
     <div id="head-banner"></div>
     <div id="vue-app">
         <div class="container">
+            <!-- left main with the list of all chats/contact -->
             <div id="main-left">
+                <!-- profile of the logged user -->
                 <div id="my-profile">
                     <div id="img-profile">
                         <img src="img/avatar_io.jpg" alt="Sofia">
@@ -30,12 +32,25 @@
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
                 </div>
+                <!-- end profile -->
+                <div id="notification">
+                    <div id="bell">
+                        <i class="fa-solid fa-bell-slash"></i>
+                    </div>
+                    <div id="not-info">
+                        <p>Ricevi notifiche di nuovi messaggi</p>
+                        <a href="#">Attiva notifiche desktop</a>
+                    </div>
+                </div>
+                <!-- sarch bar -->
                 <div id="search">
                     <div id="search-bar">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" v-model="search" placeholder="Cerca o inizia un nuova chat">
                     </div>
                 </div>
+                <!-- end search -->
+                <!-- start the lis of all chats -->
                 <div id="chats">
                     <div v-for="(contact,index) in filterContact" @click="setActive(index)">
                         <div :class="['contact',ifActive(index)]">
@@ -50,23 +65,33 @@
                     </div>
                 </div>
             </div>
+            <!-- end chats list -->
             <div id="main-left-info">
 
             </div>
+            <!-- start the main right contains the message of selected conctact -->
             <div id="main-right" v-if="activeIndex!==null">
+                <!-- header with the info of selected contact -->
                 <div id="main-header">
+                    <!-- photo of selected contact -->
                     <div id="active-img">
                         <img :src="getSrc(contacts[activeIndex])" :alt="contacts[activeIndex].name">
                     </div>
+                    <!-- end photo -->
+                    <!-- name of selected contact -->
                     <div id="active-name">
                         <p>{{contacts[activeIndex].name}}</p>
                     </div>
+                    <!-- end name -->
+                    <!-- icons -->
                     <div id="main-head-icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <i class="fa-solid fa-ellipsis-vertical" @click="showClose"></i>
                         <div v-if="show" @click="closeChat" id="closer">Chiudi Chat</div>
                     </div>
+                    <!-- end icon -->
                 </div>
+                <!-- start to visualize all the messages of selected contact -->
                 <div id="main-messages">
                     <div v-for="(msg,index) in contacts[activeIndex].messages" :class="['message',status(msg)]">
                         <i class="fa-solid fa-angle-down" @click="displayDel(msg)"></i>
@@ -78,21 +103,28 @@
                         </div>
                     </div>
                 </div>
+                <!-- end messages -->
+                <!-- footer contains icon and the tect box to send a message -->
                 <div id="main-footer">
                     <div class="foot-icon">
                         <i class="fa-solid fa-face-grin"></i>
                         <i class="fa-solid fa-paperclip"></i>
                     </div>
+                    <!-- the text box -->
                     <div id="send-msg">
                         <input type="text" placeholder="Scrivi un messaggio" v-model="inputText"
                             @keyUp.enter="sendMsg(contacts[activeIndex].messages)">
                     </div>
+                    <!-- end text box -->
+                    <!-- icon to send message -->
                     <div class="foot-icon">
                         <i class="fa-solid fa-location-arrow" @click="sendMsg(contacts[activeIndex].messages)"></i>
                         <i class="fa-solid fa-microphone"></i>
                     </div>
+                    <!-- end icon -->
                 </div>
             </div>
+            <!-- container that display some info when there's no selected contact  -->
             <div v-else id="main-no-message">
                 <div id="no-msg-container">
                     <img src="img/bg-no_message.png" alt="">
@@ -100,6 +132,7 @@
                     <p>Ora puoi inviare e ricevere messaggi senza che il telefono sia connesso a Internet. Usa WhatsApp
                         Web su un massimo di 4 dispositivi e 1 telefono contemporaneamente</p>
                 </div>
+                <!-- end info no contact selected -->
             </div>
         </div>
     </div>
