@@ -24,7 +24,7 @@
                 <!-- profile of the logged user -->
                 <div id="my-profile">
                     <div id="img-profile">
-                        <img src="img/avatar_io.jpg" alt="Sofia">
+                        <img src="img/avatar_io.jpg" alt="Sofia" @click="openInfo">
                     </div>
                     <div id="icon-profile">
                         <i class="fa-solid fa-circle-notch"></i>
@@ -66,9 +66,31 @@
                 </div>
             </div>
             <!-- end chats list -->
-            <div id="main-left-info">
-
+            <!-- a box tha display info of the user logged -->
+            <div id="main-left-info" v-if="showInfo">
+                <div id="info-head">
+                    <i class="fa-solid fa-arrow-left" @click="closeInfo"></i>
+                    <h3>Profilo</h3>
+                </div>
+                <div id="info-profile">
+                    <div id="profile-img-info">
+                        <img src="img/avatar_io.jpg" alt="Sofia">
+                    </div>
+                    <div id="profile-name-info">
+                        <p>Il tuo nome</p>
+                        <p>Sofia</p>
+                    </div>
+                    <div id="other-info">
+                        <p>Questo non è il tuo nome utente o PIN. Questo nome sarà visibile ai tuoi contatti WhatsApp.
+                        </p>
+                    </div>
+                    <div id="profile-info">
+                        <p>Info</p>
+                        <p>Ciao! Mi chiamo Sofia</p>
+                    </div>
+                </div>
             </div>
+            <!-- end box info user -->
             <!-- start the main right contains the message of selected conctact -->
             <div id="main-right" v-if="activeIndex!==null">
                 <!-- header with the info of selected contact -->
@@ -87,7 +109,7 @@
                     <div id="main-head-icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <i class="fa-solid fa-ellipsis-vertical" @click="showClose"></i>
-                        <div v-if="show" @click="closeChat" id="closer">Chiudi Chat</div>
+                        <div v-if="showDel" @click="closeChat" id="closer">Chiudi Chat</div>
                     </div>
                     <!-- end icon -->
                 </div>
@@ -97,10 +119,12 @@
                         <i class="fa-solid fa-angle-down" @click="displayDel(msg)"></i>
                         <p class="msg-text">{{msg.message}}</p>
                         <p class="msg-date">{{msg.date}}</p>
+                        <!-- a box that display when click on arrow and there's an option that delete message -->
                         <div v-if="msg.displayBox" class="info-box">
                             <p>Info messaggio</p>
                             <p @click="deleteMsg(index)">Elimina messaggio</p>
                         </div>
+                        <!-- end delete box -->
                     </div>
                 </div>
                 <!-- end messages -->

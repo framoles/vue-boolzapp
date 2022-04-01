@@ -18,6 +18,8 @@ body {
 }
 
 .container {
+    position: relative;
+    top: 50px;
     margin: auto;
     width: 80%;
     height: 90vh;
@@ -31,6 +33,82 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+
+#main-left-info {
+    background-color: #f0f2f5;
+    position: absolute;
+    width: 35%;
+    height: 100%;
+    color: #54656f;
+}
+
+#info-head {
+    background-color: #008069;
+    height: 110px;
+    display: flex;
+    color: white;
+    align-items: flex-end;
+    padding-bottom: 30px;
+}
+
+#info-head i {
+    font-size: 20px;
+    margin: 0 30px;
+}
+
+#info-profile {
+    display: flex;
+    flex-direction: column;
+}
+
+#profile-img-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+#profile-img-info img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+#profile-name-info {
+    padding: 30px;
+    background-color: white;
+}
+
+#profile-name-info p {
+    margin: 10px 0;
+}
+
+#profile-name-info p:first-child {
+    color: #008069 !important;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+#other-info {
+    padding: 30px;
+    font-size: 15px;
+}
+
+#profile-info {
+    padding: 30px;
+    background-color: white;
+}
+
+#profile-info p:first-child {
+    color: #008069 !important;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.fa-arrow-left {
+    cursor: pointer;
 }
 
 #my-profile {

@@ -5,7 +5,8 @@ const app = new Vue({
         activeIndex: null,
         inputText: "",
         search: "",
-        show: false
+        showDel: false,
+        showInfo: false
     },
     computed: {
         filterContact() {
@@ -70,11 +71,17 @@ const app = new Vue({
             }
         },
         showClose() {
-            this.show = !this.show
+            this.showDel = !this.showDel
         },
         closeChat() {
             this.activeIndex = null;
-            this.show = !this.show
+            this.showDel = !this.showDel
+        },
+        openInfo() {
+            this.showInfo = true;
+        },
+        closeInfo() {
+            this.showInfo = false;
         }
     }
 })
